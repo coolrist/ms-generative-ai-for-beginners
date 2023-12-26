@@ -194,8 +194,7 @@ def process_queue(progress, task):
             base_text = base_text.replace("\n", " ")
 
             function_name, arguments = get_speaker_info(base_text)
-            speakers = arguments.get("speakers", "")
-            if speakers == "":
+            if (speakers := arguments.get("speakers", "")) == "":
                 print(f"From function call: {filename}\t---MISSING SPEAKER---")
                 continue
             else:

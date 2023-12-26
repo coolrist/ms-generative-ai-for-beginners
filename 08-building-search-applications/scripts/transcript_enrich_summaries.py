@@ -101,10 +101,9 @@ def chatgpt_summary(text):
     # print(response)
 
     text = response.get("choices", [])[0].get("message", {}).get("content", text)
-    finish_reason = response.get("choices", [])[0].get("finish_reason", "")
 
     # print(finish_reason)
-    if finish_reason != "stop":
+    if (finish_reason := response.get("choices", [])[0].get("finish_reason", "")) != "stop":
         logger.warning("Stop reason: %s", finish_reason)
         logger.warning("Text: %s", text)
         logger.warning("Increase Max Tokens and try again")

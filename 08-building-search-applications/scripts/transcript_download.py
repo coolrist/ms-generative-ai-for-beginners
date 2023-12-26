@@ -147,8 +147,7 @@ while request:
         q.put(item)
 
     # Get the next page token from the response and create a new request object
-    next_page_token = response.get("nextPageToken")
-    if next_page_token:
+    if next_page_token := response.get("nextPageToken"):
         request = youtube.playlistItems().list(
             part="snippet",
             playlistId=PLAYLIST_ID,

@@ -105,8 +105,7 @@ def process_queue(progress, task):
         text = normalize_text(text)
         segment["text"] = text
 
-        embedding = get_text_embedding(text)
-        if embedding is None:
+        if (embedding := get_text_embedding(text)) is None:
             output_segments.append(segment.copy())
             continue
 
