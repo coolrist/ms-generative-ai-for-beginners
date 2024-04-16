@@ -36,7 +36,7 @@ try:
 
     # Retrieve the generated image
     image_url = generation_response["data"][0]["url"]  # extract image URL from response
-    generated_image = requests.get(image_url).content  # download the image
+    generated_image = requests.get(image_url, timeout=60).content  # download the image
     with open(image_path, "wb") as image_file:
         image_file.write(generated_image)
 
@@ -60,7 +60,7 @@ image_path = os.path.join(image_dir, 'generated_variation.png')
 
 image_url = response['data'][0]['url']
 
-generated_image = requests.get(image_url).content  # download the image
+generated_image = requests.get(image_url, timeout=60).content  # download the image
 with open(image_path, "wb") as image_file:
     image_file.write(generated_image)
 
