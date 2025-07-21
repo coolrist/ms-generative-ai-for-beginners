@@ -1,9 +1,12 @@
 from openai import AzureOpenAI
 import os
-import requests
 from PIL import Image
 import dotenv
+<<<<<<< HEAD:09-building-image-applications/python/aoai-app.py
 import json
+=======
+from security import safe_requests
+>>>>>>> c6871ef1 (Sandbox URL Creation):09-building-image-applications/app.py
 
 # import dotenv
 dotenv.load_dotenv()
@@ -43,7 +46,7 @@ try:
 
     # Retrieve the generated image
     image_url = generation_response["data"][0]["url"]  # extract image URL from response
-    generated_image = requests.get(image_url).content  # download the image
+    generated_image = safe_requests.get(image_url).content  # download the image
     with open(image_path, "wb") as image_file:
         image_file.write(generated_image)
 
@@ -55,5 +58,27 @@ try:
 #except client.error.InvalidRequestError as err:
 #    print(err)
 
+<<<<<<< HEAD:09-building-image-applications/python/aoai-app.py
 finally:
     print("completed!")
+=======
+# ---creating variation below---
+
+response = openai.Image.create_variation(
+  image=open(image_path, "rb"),
+  n=1,
+  size="1024x1024"
+)
+
+image_path = os.path.join(image_dir, 'generated_variation.png')
+
+image_url = response['data'][0]['url']
+
+generated_image = safe_requests.get(image_url).content  # download the image
+with open(image_path, "wb") as image_file:
+    image_file.write(generated_image)
+
+# Display the image in the default image viewer
+image = Image.open(image_path)
+image.show()
+>>>>>>> c6871ef1 (Sandbox URL Creation):09-building-image-applications/app.py

@@ -1,8 +1,8 @@
 from openai import OpenAI
 import os
-import requests
 from PIL import Image
 import dotenv
+from security import safe_requests
 
 # import dotenv
 dotenv.load_dotenv()
@@ -28,12 +28,17 @@ try:
     image_url = response.data[0].url
 
     print("LOG downloading image")
-    generated_image = requests.get(image_url).content  # download the image
+    generated_image = safe_requests.get(image_url).content  # download the image
     with open(image_path, "wb") as image_file:
         image_file.write(generated_image)
 
     # Display the image in the default image viewer
     image = Image.open(image_path)
     image.show()
+<<<<<<< HEAD:09-building-image-applications/python/oai-app-variation.py
 except openai.InvalidRequestError as err:
     print(err)
+=======
+except openai.error.InvalidRequestError as err:
+    print(err)
+>>>>>>> c6871ef1 (Sandbox URL Creation):09-building-image-applications/app-variation.py
