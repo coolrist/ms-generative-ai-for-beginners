@@ -28,7 +28,11 @@ try:
     image_url = response.data[0].url
 
     print("LOG downloading image")
+<<<<<<< HEAD:09-building-image-applications/python/oai-app-variation.py
     generated_image = safe_requests.get(image_url).content  # download the image
+=======
+    generated_image = requests.get(image_url, timeout=60).content  # download the image
+>>>>>>> de0a7d07 (Add timeout to `requests` calls):09-building-image-applications/app-variation.py
     with open(image_path, "wb") as image_file:
         image_file.write(generated_image)
 
@@ -41,4 +45,7 @@ except openai.InvalidRequestError as err:
 =======
 except openai.error.InvalidRequestError as err:
     print(err)
+<<<<<<< HEAD:09-building-image-applications/python/oai-app-variation.py
 >>>>>>> c6871ef1 (Sandbox URL Creation):09-building-image-applications/app-variation.py
+=======
+>>>>>>> de0a7d07 (Add timeout to `requests` calls):09-building-image-applications/app-variation.py

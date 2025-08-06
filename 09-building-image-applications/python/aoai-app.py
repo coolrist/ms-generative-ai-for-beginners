@@ -46,7 +46,11 @@ try:
 
     # Retrieve the generated image
     image_url = generation_response["data"][0]["url"]  # extract image URL from response
+<<<<<<< HEAD:09-building-image-applications/python/aoai-app.py
     generated_image = safe_requests.get(image_url).content  # download the image
+=======
+    generated_image = requests.get(image_url, timeout=60).content  # download the image
+>>>>>>> de0a7d07 (Add timeout to `requests` calls):09-building-image-applications/app.py
     with open(image_path, "wb") as image_file:
         image_file.write(generated_image)
 
@@ -74,11 +78,18 @@ image_path = os.path.join(image_dir, 'generated_variation.png')
 
 image_url = response['data'][0]['url']
 
+<<<<<<< HEAD:09-building-image-applications/python/aoai-app.py
 generated_image = safe_requests.get(image_url).content  # download the image
+=======
+generated_image = requests.get(image_url, timeout=60).content  # download the image
+>>>>>>> de0a7d07 (Add timeout to `requests` calls):09-building-image-applications/app.py
 with open(image_path, "wb") as image_file:
     image_file.write(generated_image)
 
 # Display the image in the default image viewer
 image = Image.open(image_path)
 image.show()
+<<<<<<< HEAD:09-building-image-applications/python/aoai-app.py
 >>>>>>> c6871ef1 (Sandbox URL Creation):09-building-image-applications/app.py
+=======
+>>>>>>> de0a7d07 (Add timeout to `requests` calls):09-building-image-applications/app.py
