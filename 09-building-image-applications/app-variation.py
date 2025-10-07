@@ -34,7 +34,7 @@ try:
     image_url = response['data'][0]['url']
 
     print("LOG downloading image")
-    generated_image = requests.get(image_url).content  # download the image
+    generated_image = requests.get(image_url, timeout=60).content  # download the image
     with open(image_path, "wb") as image_file:
         image_file.write(generated_image)
 
