@@ -1,8 +1,8 @@
 from openai import OpenAI
 import os
-import requests
 from PIL import Image
 import dotenv
+from security import safe_requests
 
 # import dotenv
 dotenv.load_dotenv()

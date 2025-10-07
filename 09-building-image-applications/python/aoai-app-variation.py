@@ -1,8 +1,8 @@
 from openai import AzureOpenAI
 import os
-import requests
 from PIL import Image
 import dotenv
+from security import safe_requests
 import json
 
 # import dotenv
@@ -42,7 +42,7 @@ try:
     image_url = response['data'][0]['url']
 
     print("LOG downloading image")
-    generated_image = requests.get(image_url).content  # download the image
+    generated_image = safe_requests.get(image_url).content  # download the image
     with open(image_path, "wb") as image_file:
         image_file.write(generated_image)
 
